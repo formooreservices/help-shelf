@@ -43,6 +43,7 @@ async function initAdmin() {
   await loadVendors();
   await loadCategories();
   await loadProducts();
+  await loadOrders();
   bindForms();
   toggleServiceFields();
 }
@@ -292,6 +293,53 @@ async function deleteProduct(id) {
 
 function sanitizeFilename(name) {
   return name.replace(/[^a-zA-Z0-9._-]/g, "_");
+}
+
+// ---------- Orders ----------
+async function loadOrders() {
+  const container = document.getElementById("admin-order-list");
+  const { data, error } = await supabaseClient
+    .from("orders")
+    .select("*, products(title), vendors(name), licenses(license_key, download_count, max_downloads, expires_at, revoked)")
+    .order("created_at", { ascending: false })
+    .limit(100);
+
+  if (error) {
+    console.error(error);
+    container.innerHTML = '<p class="empty-state">Could not load orders.</p>';
+    return;
+  }
+
+  if (data.length === 0) {
+    container.innerHTML = '<p class="empty-state">No orders yet.</p>';
+    return;
+  }
+
+  container.innerHTML = data
+    .map((o) => {
+      const license = Array.isArray(o.licenses) ? o.licenses[0] : o.licenses;
+      const amount = o.amount_cents === 0 ? "Free" : `$${(o.amount_cents / 100).toFixed(2)}`;
+      const date = new Date(o.created_at).toLocaleString();
+      const licenseInfo = license
+        ? `${license.license_key} · ${license.download_count}/${license.max_downloads} used${license.revoked ? " · REVOKED" : ""}`
+        : "no license";
+
+      return `
+        <div class="admin-product-row">
+          <div class="admin-product-main">
+            <strong>${escapeHtml(o.products?.title || "Unknown product")}</strong>
+            <span class="admin-vendor">— ${escapeHtml(o.vendors?.name || "")}</span>
+          </div>
+          <div class="admin-product-meta" style="flex-wrap: wrap; justify-content: flex-end; text-align: right;">
+            <span>${escapeHtml(o.buyer_email)}</span>
+            <span>${amount}</span>
+            <span>${date}</span>
+            <span style="font-family: var(--font-mono); font-size: 0.7rem;">${escapeHtml(licenseInfo)}</span>
+          </div>
+        </div>
+      `;
+    })
+    .join("");
 }
 
 function escapeHtml(str) {
