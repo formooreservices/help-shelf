@@ -39,6 +39,7 @@ exports.handler = async (event) => {
 
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
+      managed_payments: { enabled: false },
       customer_email: buyer_email,
       line_items: [
         {
