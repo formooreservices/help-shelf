@@ -243,6 +243,16 @@
 }
 .form-btn-row button { margin-top: 0.4rem; }
 
+
+.secondary-btn {
+  background: transparent !important;
+  color: var(--ink-muted) !important;
+  border: 1px solid var(--shelf-line) !important;
+  font-size: 0.8rem !important;
+  padding: 0.5rem !important;
+}
+
+
 .cancel-btn {
   background: none;
   border: 1px solid var(--shelf-line);

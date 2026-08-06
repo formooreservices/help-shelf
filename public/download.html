@@ -40,6 +40,7 @@ if (prefill) document.getElementById("dl-key").value = prefill;
 document.getElementById("dl-form").addEventListener("submit", async (e) => {
   e.preventDefault();
   const status = document.getElementById("dl-status");
+  const submitBtn = document.querySelector("#dl-form button[type=submit]");
   const key = document.getElementById("dl-key").value.trim();
   status.textContent = "Checking…";
 
@@ -50,7 +51,13 @@ document.getElementById("dl-form").addEventListener("submit", async (e) => {
       status.textContent = data.error || "Something went wrong.";
       return;
     }
-    status.innerHTML = `Downloads remaining: ${data.downloads_remaining}. <a href="${data.url}" style="color: var(--accent);">Click here to download ${data.product_title}</a> (link expires in 60 seconds).`;
+    submitBtn.classList.add("secondary-btn");
+    submitBtn.textContent = "Get a New Link";
+    status.innerHTML = `
+      <p style="margin-bottom:0.6rem;">Downloads remaining: ${data.downloads_remaining}</p>
+      <a href="${data.url}" class="buy-btn" style="display:block; text-align:center; text-decoration:none; margin-bottom:0.5rem;">Download ${data.product_title}</a>
+      <p style="font-size:0.72rem; color: var(--ink-muted);">Link expires in 60 seconds — if it stops working, click "Get a New Link" above.</p>
+    `;
   } catch (err) {
     status.textContent = "Something went wrong. Try again.";
   }
