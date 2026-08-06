@@ -1,0 +1,254 @@
+.hidden { display: none !important; }
+
+/* ---------- Gate ---------- */
+.gate-screen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+}
+
+.gate-box {
+  background: var(--bg-raised);
+  border: 1px solid var(--shelf-line);
+  border-radius: 8px;
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 320px;
+  text-align: center;
+}
+
+.gate-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--ink-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 1rem;
+}
+
+.gate-box input {
+  width: 100%;
+  background: var(--card);
+  border: 1px solid var(--shelf-line);
+  color: var(--ink);
+  padding: 0.7rem;
+  border-radius: 4px;
+  margin-bottom: 0.8rem;
+  font-family: var(--font-body);
+}
+
+.gate-box button {
+  width: 100%;
+  background: var(--accent);
+  color: #1b1712;
+  border: none;
+  padding: 0.7rem;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.gate-error {
+  color: #c9705a;
+  font-size: 0.8rem;
+  min-height: 1.2em;
+  margin-top: 0.6rem;
+}
+
+/* ---------- Admin layout ---------- */
+.back-link {
+  color: var(--ink-muted);
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+}
+.back-link:hover { color: var(--accent); }
+
+.admin-main {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 2.5rem 2rem 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.admin-panel {
+  background: var(--bg-raised);
+  border: 1px solid var(--shelf-line);
+  border-radius: 8px;
+  padding: 1.75rem;
+}
+
+.admin-panel h2 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  margin: 0 0 1.1rem;
+}
+
+.admin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.admin-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.82rem;
+  color: var(--ink-muted);
+}
+
+.admin-form input[type="text"],
+.admin-form input[type="email"],
+.admin-form input[type="number"],
+.admin-form input[type="password"],
+.admin-form input[type="file"],
+.admin-form select,
+.admin-form textarea {
+  background: var(--card);
+  border: 1px solid var(--shelf-line);
+  color: var(--ink);
+  padding: 0.6rem 0.7rem;
+  border-radius: 4px;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+}
+
+.admin-form textarea { resize: vertical; }
+
+.checkbox-row { margin: 0.2rem 0; }
+
+.checkbox-label {
+  flex-direction: row !important;
+  align-items: center;
+  gap: 0.5rem !important;
+  color: var(--ink) !important;
+  font-size: 0.88rem !important;
+}
+
+.admin-form button {
+  background: var(--accent);
+  color: #1b1712;
+  border: none;
+  padding: 0.75rem;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 0.4rem;
+}
+
+.admin-form button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.form-status {
+  font-size: 0.82rem;
+  color: var(--accent);
+  min-height: 1.2em;
+}
+
+.chip-list {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.chip {
+  background: var(--card);
+  border: 1px solid var(--shelf-line);
+  border-radius: 20px;
+  padding: 0.3rem 0.8rem;
+  font-size: 0.78rem;
+  color: var(--ink-muted);
+}
+
+/* ---------- Product list ---------- */
+.admin-product-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.admin-product-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--shelf-line);
+  font-size: 0.88rem;
+}
+
+.admin-product-main {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.admin-vendor {
+  color: var(--ink-muted);
+  font-size: 0.8rem;
+}
+
+.admin-product-meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--ink-muted);
+}
+
+.toggle-label {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.delete-btn {
+  background: none;
+  border: 1px solid var(--shelf-line);
+  color: #c9705a;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+}
+.delete-btn:hover { border-color: #c9705a; }
+
+.edit-btn {
+  background: none;
+  border: 1px solid var(--shelf-line);
+  color: var(--accent);
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+}
+.edit-btn:hover { border-color: var(--accent); }
+
+.form-btn-row {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+}
+.form-btn-row button { margin-top: 0.4rem; }
+
+.cancel-btn {
+  background: none;
+  border: 1px solid var(--shelf-line);
+  color: var(--ink-muted);
+  padding: 0.75rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.cancel-btn:hover { color: var(--ink); }
